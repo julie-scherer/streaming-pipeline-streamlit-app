@@ -1,0 +1,108 @@
+* Commit: 1128cf5284b481b6e477112d6055dcaf214f2a62
+| Author: Julie Scherer
+| Date: 2024-05-24 18:29:23 -0500
+| Message: updated streamlit starter pages and added readme
+| Branch:  (HEAD -> main, origin/main)
+| Stats:
+| 
+|  Makefile                                    | 14 ++++---
+|  README.md                                   | 52 ++++++++++++++++++++---
+|  _pages/__init__.py                          |  4 +-
+|  _pages/example_page.py                      | 59 +++++++++++++++------------
+|  _pages/{flink_job_page.py => flink_page.py} |  5 ++-
+|  _pages/kafka_page.py                        | 15 +++++++
+|  _pages/kafka_topic_page.py                  | 10 -----
+|  _pages/results_page.py                      |  2 +
+|  _pages/welcome_page.py                      |  7 ++--
+|  requirements-streamlit.txt                  |  3 ++
+|  src/job/aggregation_job.py                  |  1 +
+|  streamlit_app.py                            | 50 ++++++++++-------------
+|  12 files changed, 136 insertions(+), 86 deletions(-)
+| 
+* Commit: dbe2072fef4765447644569c4ad551719175f189
+| Author: JulieAnn "Julie" Scherer
+| Date: 2024-04-23 20:59:14 -0500
+| Message: added flink (#1)
+| Branch: 
+| Stats:
+| 
+|  .dockerignore                                  |   1 +
+|  .gitignore                                     |   4 +
+|  Dockerfile                                     |  12 --
+|  Dockerfile.flink                               |  57 ++++++++
+|  Dockerfile.streamlit                           |  12 ++
+|  Makefile                                       |  65 ++++++---
+|  _pages/flink_job_page.py                       |  16 ++-
+|  docker-compose.yml                             | 117 +++++++++++++++
+|  flink-env.env                                  |   5 +
+|  requirements-flink.txt                         |   5 +
+|  requirements.txt => requirements-streamlit.txt |   2 +-
+|  src/job/aggregation_job.py                     | 133 ++++++++++++++++++
+|  src/job/start_job.py                           | 172 +++++++++++++++++++++++
+|  13 files changed, 564 insertions(+), 37 deletions(-)
+|   
+| * Commit: a345d80fe58024e512cdc8ee78d00ca647f26e24
+|/  Author: Julie Scherer
+|   Date: 2024-04-23 20:58:44 -0500
+|   Message: added flink
+|   Branch:  (infra/add-flink)
+|   Stats:
+|   
+|    .dockerignore                                  |   1 +
+|    .gitignore                                     |   4 +
+|    Dockerfile                                     |  12 --
+|    Dockerfile.flink                               |  57 +++++++
+|    Dockerfile.streamlit                           |  12 ++
+|    Makefile                                       |  65 +++++---
+|    _pages/flink_job_page.py                       |  16 +-
+|    docker-compose.yml                             | 117 ++++++++++++++
+|    flink-env.env                                  |   5 +
+|    requirements-flink.txt                         |   5 +
+|    requirements.txt => requirements-streamlit.txt |   2 +-
+|    src/job/aggregation_job.py                     | 133 ++++++++++++++++
+|    src/job/start_job.py                           | 172 +++++++++++++++++++++
+|    13 files changed, 564 insertions(+), 37 deletions(-)
+| 
+* Commit: 7675c8639ac53601e667e85e89215fdacb225790
+| Author: Julie Scherer
+| Date: 2024-04-19 01:45:37 -0500
+| Message: repo skeleton
+| Branch: 
+| Stats:
+| 
+|  .dockerignore              |  0
+|  .gitignore                 |  0
+|  Dockerfile                 | 12 ++++++
+|  Makefile                   | 29 ++++++++++++++
+|  README.md                  |  7 +++-
+|  _pages/__init__.py         |  5 +++
+|  _pages/example_page.py     | 38 ++++++++++++++++++
+|  _pages/flink_job_page.py   |  9 +++++
+|  _pages/kafka_topic_page.py | 10 +++++
+|  _pages/results_page.py     |  9 +++++
+|  _pages/welcome_page.py     | 14 +++++++
+|  requirements.txt           |  4 +-
+|  streamlit_app.py           | 91 ++++++++++++++++++++++++++------------------
+|  13 files changed, 187 insertions(+), 41 deletions(-)
+| 
+* Commit: dbc21ac4d6302de33c617a2eab41e26c7aa17773
+| Author: Julie Scherer
+| Date: 2024-04-19 00:50:33 -0500
+| Message: added streamlit community cloud example
+| Branch: 
+| Stats:
+| 
+|  README.md        |  6 ++++++
+|  requirements.txt |  3 +++
+|  streamlit_app.py | 40 ++++++++++++++++++++++++++++++++++++++++
+|  3 files changed, 49 insertions(+)
+| 
+* Commit: 86931a5779b2a9df15d640579e547d602ca3590e
+  Author: Julie Scherer
+  Date: 2024-04-19 00:38:53 -0500
+  Message: first commit
+  Branch: 
+  Stats:
+  
+   streamlit_app.py | 0
+   1 file changed, 0 insertions(+), 0 deletions(-)

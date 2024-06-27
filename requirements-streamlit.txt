@@ -1,0 +1,6 @@
+streamlit
+altair
+pandas
+openai
+langchain
+langchain-community

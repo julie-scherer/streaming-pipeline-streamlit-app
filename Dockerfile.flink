@@ -1,0 +1,57 @@
+FROM flink:1.18.1
+
+# Install Java
+RUN apt-get update -y \
+    && apt-get install -y \
+        openjdk-11-jre-headless \
+        openjdk-11-jdk \
+        build-essential \
+        zlib1g-dev \
+        libbz2-dev \
+        libffi-dev \
+        libssl-dev \
+        lzma \
+        liblzma-dev \
+        bash \
+        postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# Download connector libraries
+RUN wget -P /opt/flink/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-json/1.18.1/flink-json-1.18.1.jar && \
+    wget -P /opt/flink/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-kafka/3.1.0-1.18/flink-sql-connector-kafka-3.1.0-1.18.jar && \
+    wget -P /opt/flink/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-connector-jdbc/3.1.2-1.18/flink-connector-jdbc-3.1.2-1.18.jar && \
+    wget -P /opt/flink/lib/ https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.24/postgresql-42.2.24.jar
+
+# Installing OpenJDK again & setting this is required due to a bug with M1 Macs
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-arm64
+
+# Install Python3 and pip3
+RUN apt-get update -y \
+    && apt-get install -y \
+        python3 \
+        python3-pip \
+        python3-dev \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -s /usr/bin/python3 /usr/bin/python
+
+# install PyFlink
+RUN pip3 install apache-flink==1.18.0
+# COPY apache-flink*.tar.gz /
+# RUN pip3 install /apache-flink-libraries*.tar.gz \
+#     && pip3 install /apache-flink*.tar.gz
+
+
+# Install other Python dependencies
+COPY requirements-flink.txt .
+RUN pip3 install -r requirements-flink.txt --no-cache-dir \
+    && pip3 cache purge
+
+# Configure Flink
+RUN echo "taskmanager.memory.jvm-metaspace.size: 512m" >> /opt/flink/conf/flink-conf.yaml
+
+# Copy job source code
+COPY src/job /opt/src/job
+
+WORKDIR /opt/flink
+
+# https://nightlies.apache.org/flink/flink-docs-master/docs/deployment/resource-providers/standalone/docker/

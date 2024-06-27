@@ -1,0 +1,12 @@
+FROM python:3.11.1
+
+WORKDIR /app
+
+COPY requirements-streamlit.txt .
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements-streamlit.txt
+
+COPY _pages/ _pages/
+COPY streamlit_app.py .
+
+CMD ["streamlit", "run", "streamlit_app.py"]
