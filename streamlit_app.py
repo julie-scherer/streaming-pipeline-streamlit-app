@@ -20,7 +20,6 @@ def main():
     st.set_page_config(
         page_title="Self-Service Streaming Pipeline App",
         menu_items={
-            "Get help": "https://dataexpert.io/contact",
             "Report a bug": None,
             "About": None,
         },

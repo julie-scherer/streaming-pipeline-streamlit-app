@@ -25,9 +25,9 @@ help:
 	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
 
-.PHONY: run docker
+.PHONY: run
 ## Builds the base Docker image and runs the container
-run docker:
+run:
 	@echo "Building Docker image and spinning up container..."
 	@docker compose up --build --remove-orphans -d --force-recreate
 	@echo "Docker container deployed successfully! Check the status of the running containers in the Docker Desktop."
@@ -43,10 +43,3 @@ down:
 .PHONY: restart
 ## Restarts Docker containers
 restart: down up
-
-.PHONY: run local
-run local:
-	python3 -m venv .venv && \
-	source .venv/bin/activate && \
-	pip install -r requirements-streamlit.txt --no-cache-dir && \
-	streamlit run streamlit_app.py
